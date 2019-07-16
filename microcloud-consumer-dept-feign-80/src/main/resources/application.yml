@@ -1,0 +1,19 @@
+server:
+  port: 80
+  
+feign:
+  hystrix:
+    enabled: true
+  client: #避免java.util.concurrent.TimeoutException: null
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic  
+
+eureka:
+  client:
+    register-with-eureka: false #false表示不向注册中心注册自己
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+    

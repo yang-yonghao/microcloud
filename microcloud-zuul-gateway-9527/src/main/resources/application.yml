@@ -1,0 +1,27 @@
+server:
+  port: 9527
+  
+spring:
+  application:
+    name: microservicecloud-zuul-gateway #对外暴露的服务实例名称
+    
+eureka:
+  client: #客户端注册进Eureka服务列表内
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: gateway-9527.com #自定义服务名称信息
+    prefer-ip-address: true #访问路径可以显示IP地址
+    
+zuul:
+  prefix: /hlhao
+  ignored-services: "*"
+  routes:
+    dept.serviceId: microservicecloud-dept
+    dept.path: /mydept/** #代理名称
+    
+info:
+  app.name: microcloud
+  company.name: www.hlhao.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
